@@ -9,7 +9,9 @@ let tile_columns;
 let tile_rows;
 let camera_velocity;
 let camera_offset;
+let inventory;
 let label;
+let score;
 
 function setup() {
   camera_offset = new p5.Vector(0, 0);
@@ -21,11 +23,13 @@ function setup() {
   if (window.p3_setup) {
     window.p3_setup();
   }
-
+  
+  inventory = createP();
   label = createP();
-  label.html("High score: 0");
+  score = createP();
+  inventory.parent("container");
   label.parent("container");
-
+  score.parent("container");
 
   rebuildWorld("cm147");
 }
@@ -75,7 +79,7 @@ function draw() {
   }
 
   let world_pos = screenToWorld(
-    [mouseX, mouseY],
+    [391, 184],
     [camera_offset.x, camera_offset.y]
   );
   let world_offset = cameraToWorldOffset([camera_offset.x, camera_offset.y]);
